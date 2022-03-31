@@ -6,9 +6,15 @@ body {
 .square {
   padding: 10px;
   margin: 10px;
-  background-color: white;
+  background-color: lightblue;
   display: inline-block;
   height: 20px;
   width: 20px;
   vertical-align: top;
+  border: 2px solid gray;
+  border-radius: 10px;
+}
+
+.msgDiv {
+  height: 20px;
 }

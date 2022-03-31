@@ -5,13 +5,19 @@ let firstCard = null;
 let firstCardElement;
 let deck;
 let outputMsg = "";
+let numOfMatch = 0;
 
 const outputMsgDiv = document.createElement("div");
+outputMsgDiv.classList.add("msgDiv");
 document.body.appendChild(outputMsgDiv);
 
 const generateMsg = (msg) => {
-  let message = "Try again!";
-  if (msg === "match") message = "It's a match!";
+  let message = "Not a Match! Please try again!";
+  outputMsgDiv.style.color = "red";
+  if (msg === "match") {
+    message = "It's a match!";
+    outputMsgDiv.style.color = "green";
+  }
   return message;
 };
 
@@ -21,7 +27,6 @@ const squareClick = (cardElement, row, column) => {
   if (cardElement.innerText !== "") {
     return;
   }
-
   // first turn
   if (firstCard === null) {
     console.log("first turn");
@@ -37,18 +42,23 @@ const squareClick = (cardElement, row, column) => {
       clickedCard.suit === firstCard.suit
     ) {
       outputMsg = generateMsg("match");
-      console.log(outputMsg);
+      numOfMatch += 1;
       // turn this card over
       cardElement.innerText = clickedCard.name;
     } else {
-      console.log("NOT a match");
       outputMsg = generateMsg();
       // turn this card back over
+      cardElement.innerText = clickedCard.name;
+      setTimeout(() => {
+        cardElement.innerText = "";
+      }, 3000);
       firstCardElement.innerText = "";
     }
     // reset the first card
     firstCard = null;
   }
+
+  if (numOfMatch === 8) outputMsg = "Congrats! You are the winner.";
   outputMsgDiv.innerText = outputMsg;
 };
 
