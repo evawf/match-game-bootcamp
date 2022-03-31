@@ -1,20 +1,19 @@
-// Please implement exercise logic here
-const grid = [
-  ["A", "B"],
-  ["Y", "Z"],
-];
-
-const upperLeftPosition = grid[0][0]; // 'A'
-const upperRightPosition = grid[0][1]; // 'B'
-const lowerLeftPosition = grid[1][0]; // 'Y'
-const lowerRightPosition = grid[1][1]; // 'Z'
-
 // boardSize has to be an even number
 const boardSize = 4;
 const board = [];
 let firstCard = null;
 let firstCardElement;
 let deck;
+let outputMsg = "";
+
+const outputMsgDiv = document.createElement("div");
+document.body.appendChild(outputMsgDiv);
+
+const generateMsg = (msg) => {
+  let message = "Try again!";
+  if (msg === "match") message = "It's a match!";
+  return message;
+};
 
 const squareClick = (cardElement, row, column) => {
   const clickedCard = board[row][column];
@@ -33,22 +32,24 @@ const squareClick = (cardElement, row, column) => {
     firstCardElement = cardElement;
     // second turn
   } else {
-    console.log("second turn");
     if (
       clickedCard.name === firstCard.name &&
       clickedCard.suit === firstCard.suit
     ) {
-      console.log("match");
+      outputMsg = generateMsg("match");
+      console.log(outputMsg);
       // turn this card over
       cardElement.innerText = clickedCard.name;
     } else {
       console.log("NOT a match");
+      outputMsg = generateMsg();
       // turn this card back over
       firstCardElement.innerText = "";
     }
     // reset the first card
     firstCard = null;
   }
+  outputMsgDiv.innerText = outputMsg;
 };
 
 // create all the board elements that will go on the screen
