@@ -65,7 +65,6 @@ const squareClick = (cardElement, row, column) => {
 // create all the board elements that will go on the screen
 // return the built board
 const buildBoardElements = (board) => {
-  console.log(board);
   const boardElement = document.createElement("div");
   boardElement.classList.add("board");
   for (let i = 0; i < board.length; i += 1) {
