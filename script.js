@@ -29,7 +29,6 @@ const squareClick = (cardElement, row, column) => {
   }
   // first turn
   if (firstCard === null) {
-    console.log("first turn");
     firstCard = clickedCard;
     // turn this card over
     cardElement.innerText = firstCard.name;
@@ -45,13 +44,15 @@ const squareClick = (cardElement, row, column) => {
       numOfMatch += 1;
       // turn this card over
       cardElement.innerText = clickedCard.name;
+      cardElement.style.backgroundColor = "green";
+      firstCardElement.style.backgroundColor = "green";
     } else {
       outputMsg = generateMsg();
       // turn this card back over
       cardElement.innerText = clickedCard.name;
       setTimeout(() => {
         cardElement.innerText = "";
-      }, 3000);
+      }, 500);
       firstCardElement.innerText = "";
     }
     // reset the first card
