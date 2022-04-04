@@ -3,6 +3,21 @@ body {
   text-align: center;
 }
 
+.board {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  border: 2px solid beige;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 5px 5px grey;
+  background-color: black;
+  border-radius: 15px;
+}
+
 .square {
   padding: 10px;
   margin: 10px;
